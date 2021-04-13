@@ -15,7 +15,7 @@ https://pixeljoint.com/p/3240.htm
 https://pixeljoint.com/p/4343.htm
 ```
 
-this will create one directory per artist, and in those images will be downloaded.
+this will create one directory per artist, and in those images will be downloaded, in a manner similar to [gallery-dl](https://github.com/mikf/gallery-dl/).
 
 it is meant to be re-ran periodically to get new images.
 
