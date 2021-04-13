@@ -17,5 +17,5 @@ https://pixeljoint.com/p/4343.htm
 
 this will create one directory per artist, and in those images will be downloaded.
 
-it is meant to be re-run periodically to get new images.
+it is meant to be re-ran periodically to get new images.
 
