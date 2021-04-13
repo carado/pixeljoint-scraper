@@ -2,7 +2,7 @@ a scraper for [pixeljoint](https://pixeljoint.com/) artists.
 
 ### Usage
 
-run `./get.sh` in a directory containing a file called `list`, containing the urls of pixeljoint artists, one per line, like so:
+run `./get.sh` in a directory containing a file called `list`, containing the urls of pixeljoint artists, one per line:
 
 ```
 https://pixeljoint.com/p/38285.htm
