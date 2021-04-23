@@ -6,9 +6,17 @@ exts="png gif jpg jpeg PNG GIF JPG JPEG webp WEBP"
 
 alias wget='wget -nv --random-wait'
 
-cat list | while read artist_url
+clean-utf8() {
+	iconv -f utf-8 -t utf-8 -c "$1" > .filtered
+	mv .filtered "$1"
+}
+
+for artist_url in $(cat list | shuf)
 do
+	echo -ne "\e[0;35m"
 	wget "$artist_url" -O .tmp.htm
+	echo -ne "\e[0m"
+	clean-utf8 .tmp.htm
 	artist="$(echo "$artist_url"|sed -n 's/^.*\/\([0-9]*\)\.htm/\1/p')"
 	name="$(cat .tmp.htm | sed -n 's/^.*<title>Pixel Artist - \([^<]*\)<\/title>.*$/\1/p')"
 	dir="$artist $name"
@@ -20,6 +28,7 @@ do
 		do
 			echo -ne '\t'
 			wget "https://pixeljoint.com/pixels/profile_tab_icons.asp?id=$artist&pg=$page" -O .page.htm
+			clean-utf8 .page.htm
 			if grep -q 'No icons found.' .page.htm
 			then
 				break
@@ -41,6 +50,7 @@ do
 				#echo "$img doesn't exist"
 				echo -ne '\t\t'
 				wget "https://pixeljoint.com/pixelart/$img.htm" -O .img.htm
+				clean-utf8 .img.htm
 				url="$(cat .img.htm | sed -n 's/^.*<meta property="og:image" content="\([^"]*\)".*$/\1/p')"
 				ext="$(echo "$url" | sed 's/^.*\.\([^\.]*\)$/\1/')"
 				filename="$img.$ext"
