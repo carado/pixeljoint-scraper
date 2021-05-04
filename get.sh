@@ -11,7 +11,7 @@ clean-utf8() {
 	mv .filtered "$1"
 }
 
-for artist_url in $(cat list | shuf)
+for artist_url in $(cat list | shuf | grep -vE '^\s*$')
 do
 	echo -ne "\e[0;35m"
 	wget "$artist_url" -O .tmp.htm
